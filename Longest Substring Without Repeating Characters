@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        if(s.length()==0 || s.length()==1){
+            return s.length();
+        }
+         vector<int>count(127,0);
+         int i=0;
+         int j=0;
+         int len=0;
+         int ans=0;
+          while(j<s.length()){
+              count[s[j]]++;
+              if(count[s[j]]<2){
+                  len++;
+                  j++;
+                  }
+                  else{
+                      i++;
+                      j=i;
+                      ans=max(ans,len);
+                      fill(count.begin(),count.end(),0);
+                      len=0;
+                  }
+          }
+          ans=max(ans,len);
+          return ans;
+    }
+};

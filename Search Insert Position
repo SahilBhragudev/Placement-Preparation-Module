@@ -1,0 +1,29 @@
+class Solution {
+    private:
+   void solve(int l,int r,vector<int> nums, int target,int &ans){
+        if(l>r){
+            ans=l;
+            return;
+        }
+        int mid=(l+r)/2;
+        if(nums[mid]>target){
+            solve(l,mid-1,nums,target,ans);
+        }
+        if(nums[mid]<target){
+            solve(mid+1,r,nums,target,ans);
+        }
+        if(nums[mid]==target){
+            ans=mid;
+            return;
+        }
+    }
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        int l=0;
+        int n=nums.size();
+        int r=n-1;
+        int ans;
+        solve(l,r,nums,target,ans);
+        return ans;
+    }
+};
